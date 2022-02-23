@@ -1,27 +1,28 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 app = Flask(__name__)
 
+# List of Post dictionaries 
 posts = [
     
     {
         'author': 'Sharliz Ang',
         'title': 'Blog Post 1',
         'content': 'First post content', 
-        'date posted': 'February 2 2022',
+        'date posted': 'February 2 2022'
     }, 
     
     {
         'author': 'Sharliz Ang',
         'title': 'Blog Post 2',
         'content': 'Second post content', 
-        'date posted': 'February 14 2022',
+        'date posted': 'February 14 2022'
     },
     
     {
         'author': 'Sharliz Ang',
         'title': 'Blog Post 3',
         'content': 'Third post content', 
-        'date posted': 'February 14 2022',
+        'date posted': 'February 23 2022'
     }
 ]
 
