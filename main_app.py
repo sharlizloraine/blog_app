@@ -1,7 +1,7 @@
 # This is a blog app that allows users to register and post blogs
 
 from flask import Flask, render_template, url_for
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm  
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '63b39e970e74a330324913b5db1b61e4'
