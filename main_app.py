@@ -1,7 +1,7 @@
 # This is a blog app that allows users to register and post blogs
 
-from flask import Flask, render_template, url_for
-from forms import RegistrationForm, LoginForm  
+from flask import Flask, render_template, url_for, flash, redirect 
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '63b39e970e74a330324913b5db1b61e4'
@@ -12,22 +12,22 @@ posts = [
     {
         'author': 'Sharliz Ang',
         'title': 'Blog Post 1',
-        'content': 'First post content', 
-        'date posted': 'February 2 2022'
+        'content': 'First post content',
+        'date_posted': 'February 2 2022'
     }, 
     
     {
         'author': 'Sharliz Ang',
         'title': 'Blog Post 2',
         'content': 'Second post content', 
-        'date posted': 'February 14 2022'
+        'date_posted': 'February 14 2022'
     },
     
     {
         'author': 'Sharliz Ang',
         'title': 'Blog Post 3',
         'content': 'Third post content', 
-        'date posted': 'February 23 2022'
+        'date_posted': 'February 23 2022'
     }
 ]
 
@@ -45,9 +45,12 @@ def about():
     return render_template('about.html', title='About')
 
 # Route for registration page 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit(): 
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
 # Route for login page 
